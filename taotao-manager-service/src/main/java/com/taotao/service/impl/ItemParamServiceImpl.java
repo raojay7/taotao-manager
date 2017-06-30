@@ -1,6 +1,10 @@
 package com.taotao.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.taotao.common.pojo.EasyUIDataGridResult;
 import com.taotao.common.pojo.TaotaoResult;
+import com.taotao.common.utils.ExceptionUtil;
 import com.taotao.mapper.TbItemParamMapper;
 import com.taotao.pojo.TbItemParam;
 import com.taotao.pojo.TbItemParamExample;
@@ -26,30 +30,69 @@ public class ItemParamServiceImpl implements ItemParamService
     public TaotaoResult getItemParamByCid(Long cid)
     {
         //根据cid查询规格参数模板
-        TbItemParamExample example=new TbItemParamExample();
+        TbItemParamExample example = new TbItemParamExample();
         TbItemParamExample.Criteria criteria = example.createCriteria();
         criteria.andItemCatIdEqualTo(cid);
         List<TbItemParam> list = itemParamMapper.selectByExampleWithBLOBs(example);
         //判断是否查询到结果
-        if(list!=null&list.size()>0)
+        if (list != null && !list.isEmpty())
         {
-            TbItemParam itemParam=list.get(0);
-            return TaotaoResult.ok(itemParam);
+            return TaotaoResult.ok(list.get(0));
         }
-        return TaotaoResult.ok();
+        return TaotaoResult.build(400, "此分类未定义规格模板");
     }
 
     @Override
     public TaotaoResult insertItemParam(Long cid, String paramData)
     {
-        TbItemParam itemParam=new TbItemParam();
+        TbItemParam itemParam = new TbItemParam();
         itemParam.setItemCatId(cid);
         itemParam.setParamData(paramData);
-        Date date=new Date();
+        Date date = new Date();
         itemParam.setCreated(date);
         itemParam.setUpdated(date);
         //插入记录
         itemParamMapper.insert(itemParam);
         return TaotaoResult.ok();
     }
+
+    @Override
+    public EasyUIDataGridResult getItemParamList(Integer page, Integer rows)
+    {
+        //分页处理
+        PageHelper.startPage(page, rows);
+        //执行查询
+        TbItemParamExample example = new TbItemParamExample();
+        List<TbItemParam> list = itemParamMapper.selectByExampleWithBLOBs(example);
+        //取分页信息
+        PageInfo<TbItemParam> pageInfo = new PageInfo<TbItemParam>(list);
+        //返回处理结果
+        EasyUIDataGridResult result = new EasyUIDataGridResult(pageInfo.getTotal(), list);
+        return result;
+    }
+
+    @Override
+    public TaotaoResult checkParam(Long cid)
+    {
+        try
+        {
+            TbItemParamExample example = new TbItemParamExample();
+            TbItemParamExample.Criteria criteria = example.createCriteria();
+            criteria.andItemCatIdEqualTo(cid);
+            List<TbItemParam> list = itemParamMapper.selectByExample(example);
+            // 判断是否查询到结果
+            if (null == list || list.isEmpty())
+            {
+                return TaotaoResult.ok();
+            }
+            return TaotaoResult.ok(list.get(0));
+        }
+        catch (Exception e)
+        {
+            return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+        }
+    }
+
+
+
 }

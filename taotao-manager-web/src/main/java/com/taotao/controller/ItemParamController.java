@@ -1,5 +1,6 @@
 package com.taotao.controller;
 
+import com.taotao.common.pojo.EasyUIDataGridResult;
 import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.service.ItemParamService;
 import org.springframework.stereotype.Controller;
@@ -22,8 +23,32 @@ public class ItemParamController
 
     @RequestMapping("/query/itemcatid/{cid}")
     @ResponseBody
-    public TaotaoResult getItemParamByCid(@PathVariable Long cid)
+    public TaotaoResult checkItemParam(@PathVariable Long cid)
     {
-        return itemParamService.getItemParamByCid(cid);
+        return itemParamService.checkParam(cid);
     }
+
+    @RequestMapping("/save/{cid}")
+    @ResponseBody
+    public TaotaoResult insertItemParam(@PathVariable Long cid, String paramData)
+    {
+        return itemParamService.insertItemParam(cid, paramData);
+    }
+
+    @RequestMapping("/list")
+    @ResponseBody
+    public EasyUIDataGridResult getItemList(Integer page, Integer rows)
+    {
+        return itemParamService.getItemParamList(page, rows);
+    }
+
+    @RequestMapping("/cid/{cid}")
+    @ResponseBody
+    public TaotaoResult getItemParamByCid(@PathVariable Long cid) {
+        System.out.println("ceshi");
+        TaotaoResult result = itemParamService.getItemParamByCid(cid);
+        return result;
+    }
+
+
 }

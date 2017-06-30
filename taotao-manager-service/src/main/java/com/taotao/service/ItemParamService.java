@@ -1,5 +1,6 @@
 package com.taotao.service;
 
+import com.taotao.common.pojo.EasyUIDataGridResult;
 import com.taotao.common.pojo.TaotaoResult;
 
 /**
@@ -10,4 +11,15 @@ public interface ItemParamService
 {
     TaotaoResult getItemParamByCid(Long cid);
     TaotaoResult insertItemParam(Long cid,String paramData);
+
+    /**
+     * 根据当前页得到对应的easyUI分页对象
+     * @param page 当前页
+     * @param rows 每页多少行
+     * @return
+     */
+    EasyUIDataGridResult getItemParamList(Integer page, Integer rows);
+
+    TaotaoResult checkParam(Long cid);
+
 }

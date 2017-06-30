@@ -1,11 +1,12 @@
 <component name="libraryTable">
   <library name="Maven: com.github.pagehelper:pagehelper:3.4.2-fix">
-    <CLASSES />
+    <CLASSES>
+      <root url="file://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/3.4.2-fix" />
+    </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/3.4.2-fix/pagehelper-3.4.2-fix-javadoc.jar!/" />
     </JAVADOC>
-    <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/3.4.2-fix/pagehelper-3.4.2-fix-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
+    <jarDirectory url="file://$MAVEN_REPOSITORY$/com/github/pagehelper/pagehelper/3.4.2-fix" recursive="false" />
   </library>
 </component>

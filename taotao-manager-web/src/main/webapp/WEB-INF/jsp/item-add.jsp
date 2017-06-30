@@ -9,16 +9,16 @@
 	            <td>商品类目:</td>
 	            <td>
 	            	<a href="javascript:void(0)" class="easyui-linkbutton selectItemCat">选择类目</a>
-	            	<input type="hidden" name="cid" style="width: 280px;"></input>
+	            	<input type="hidden" name="cid" style="width: 280px;"/>
 	            </td>
 	        </tr>
 	        <tr>
 	            <td>商品标题:</td>
-	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"></input></td>
+	            <td><input class="easyui-textbox" type="text" name="title" data-options="required:true" style="width: 280px;"/></td>
 	        </tr>
 	        <tr>
 	            <td>商品卖点:</td>
-	            <td><input class="easyui-textbox" name="sellPoint" data-options="multiline:true,validType:'length[0,150]'" style="height:60px;width: 280px;"></input></td>
+	            <td><input class="easyui-textbox" name="sellPoint" data-options="multiline:true,validType:'length[0,150]'" style="height:60px;width: 280px;"/></td>
 	        </tr>
 	        <tr>
 	            <td>商品价格:</td>
@@ -111,6 +111,9 @@
 		//ajax的post方式提交表单
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
 		alert($("#itemAddForm").serialize());
+		//可以生成如下格式的字符串：
+		//Name=zhangsan&password=123&id=szfda2313as
+
 		$.post("/item/save",$("#itemAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增商品成功!');

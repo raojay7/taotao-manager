@@ -6,6 +6,7 @@ import com.taotao.pojo.TbItemParamItem;
 import com.taotao.pojo.TbItemParamItemExample;
 import com.taotao.service.ItemParamItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.Map;
  * 取规格参数信息并显示在jsp页面上（要自己拼接html）
  * Created by 隽 on 2017/6/30.
  */
+@Service
 public class ItemParamItemServiceImpl implements ItemParamItemService
 {
 

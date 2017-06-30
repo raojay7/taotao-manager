@@ -22,4 +22,10 @@ public interface ItemParamService
 
     TaotaoResult checkParam(Long cid);
 
+    /**
+     * 根据选择的id删除对应的参数模板
+     * @param ids
+     * @return
+     */
+    TaotaoResult deleteItemParamByIds(String[] ids);
 }

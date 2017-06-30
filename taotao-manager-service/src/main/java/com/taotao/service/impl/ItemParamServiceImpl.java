@@ -93,6 +93,25 @@ public class ItemParamServiceImpl implements ItemParamService
         }
     }
 
-
+    @Override
+    public TaotaoResult deleteItemParamByIds(String[] ids)
+    {
+        try
+        {
+            for (String strId:ids)
+            {
+                Long id=Long.parseLong(strId);
+                TbItemParamExample example=new TbItemParamExample();
+                TbItemParamExample.Criteria criteria = example.createCriteria();
+                criteria.andIdEqualTo(id);
+                itemParamMapper.deleteByExample(example);
+            }
+            return TaotaoResult.ok();
+        }
+        catch (Exception e)
+        {
+            return TaotaoResult.build(500, ExceptionUtil.getStackTrace(e));
+        }
+    }
 
 }

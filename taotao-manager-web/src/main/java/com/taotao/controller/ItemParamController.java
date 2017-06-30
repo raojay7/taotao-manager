@@ -44,10 +44,18 @@ public class ItemParamController
 
     @RequestMapping("/cid/{cid}")
     @ResponseBody
-    public TaotaoResult getItemParamByCid(@PathVariable Long cid) {
+    public TaotaoResult getItemParamByCid(@PathVariable Long cid)
+    {
         TaotaoResult result = itemParamService.getItemParamByCid(cid);
         return result;
     }
 
+    @RequestMapping("/delete")
+    @ResponseBody
+    public TaotaoResult deleteItemParamByIds(String ids)
+    {
+        String[] str = ids.split(",");
+        return itemParamService.deleteItemParamByIds(str);
+    }
 
 }

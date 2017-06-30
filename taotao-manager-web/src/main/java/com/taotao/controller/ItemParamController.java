@@ -45,7 +45,6 @@ public class ItemParamController
     @RequestMapping("/cid/{cid}")
     @ResponseBody
     public TaotaoResult getItemParamByCid(@PathVariable Long cid) {
-        System.out.println("ceshi");
         TaotaoResult result = itemParamService.getItemParamByCid(cid);
         return result;
     }

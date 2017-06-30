@@ -110,13 +110,16 @@
 		
 		//ajax的post方式提交表单
 		//$("#itemAddForm").serialize()将表单序列号为key-value形式的字符串
-		alert($("#itemAddForm").serialize());
+		//alert($("#itemAddForm").serialize());
 		//可以生成如下格式的字符串：
 		//Name=zhangsan&password=123&id=szfda2313as
 
 		$.post("/item/save",$("#itemAddForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','新增商品成功!');
+			}
+			else{
+				$.messager.alert('提示','新增商品失败!');
 			}
 		});
 	}

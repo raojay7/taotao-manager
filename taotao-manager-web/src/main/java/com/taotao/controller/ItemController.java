@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/item")
 public class ItemController
 {
 
     @Autowired
     private ItemService itemService;
 
-    @RequestMapping("/item/{itemId}")
+    @RequestMapping("/{itemId}")
     @ResponseBody
     public TbItem getItemById(@PathVariable(value = "itemId") Long itemId)
     {
@@ -26,7 +27,7 @@ public class ItemController
         return item;
     }
 
-    @RequestMapping("/item/list")
+    @RequestMapping("/list")
     @ResponseBody
     public EasyUIDataGridResult getItemList(Integer page, Integer rows)
     {
